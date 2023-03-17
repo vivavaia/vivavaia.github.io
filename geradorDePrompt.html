@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Texto</title>
+        <!-- Outros elementos do head -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    </head>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            background-color: #f6f8fa;
+            color: #2c3e50;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        textarea, input[type="text"], select {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid #d0d4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056B3;
+        }
+        .output {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            border: 1px solid #d0d4da;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        .select2-container .select2-selection {
+            border: 1px solid #d0d4da;
+            border-radius: 4px;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #007BFF;
+            color: white;
+        }
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .form-container > div {
+            flex: 1;
+        }
+        .form-left {
+            min-width: calc(50% - 10px);
+        }
+        .form-right {
+            min-width: calc(50% - 10px);
+        }
+        .output-container {
+            flex: 100%;
+        }
+        #diretrizes {
+            resize: none; /* Desabilita o redimensionamento do textarea */
+            height: 150px; /* Define a altura fixa do textarea */
+        }
+        /* Estilos responsivos para telas menores (até 768px) */
+        @media screen and (max-width: 768px) {
+            .form-left, .form-right {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-left">
+            <label>
+                Tipo de voz:
+                <select id="tipoDeVoz">
+                    <option value="apresentador de circo">Apresentador de Circo</option>
+                    <option value="locutor de rádio brega">Locutor de Rádio Brega</option>
+                    <option value="contista">Contista</option>
+                    <!-- Adicione mais opções conforme necessário -->
+                </select>
+            </label>
+            <label>
+                Tipo de Linguagem:
+                <select id="tipoDeLinguagem">
+                    <option value="informal">Informal</option>
+                    <option value="formal">Formal</option>
+                </select>
+            </label>
+            <label>
+                Tipo de Tom:
+                <select id="tipoDeTom" multiple style="width: 100%;">
+                    <option value="humorístico" selected>Humorístico</option>
+                    <option value="tom irônico" selected>Irônico</option>
+                    <option value="tom sarcástico">Sarcástico</option>
+                    <option value="tom trágico">Trágico</option>
+                </select>
+            </label>
+            <label>
+                Categoria PEDAL:
+                <select id="categoriaPedal">
+                    <option value="promocao">Promoção</option>
+                    <option value="entretenimento">Entretenimento</option>
+                    <option value="debate">Debate</option>
+                    <option value="aprendizado">Aprendizado</option>
+                    <option value="ligacao">Ligação</option>
+                </select>
+            </label>
+            <label>
+                Objetivo:
+                <input type="text" id="objetivo" readonly>
+            </label>
+            <label>
+                Público-alvo:
+                <input type="text" id="publicoAlvo">
+            </label>
+            </div>
+        <div class="form-right">
+        <label>
+            Anatomia da publicação:
+            <select id="anatomiaDaPublicacao">
+                <option value="um reels">Reels</option>
+                <option value="um script de vídeo IGTV">IGTV</option>
+                <option value="uma publicação simples">Publicação Simples</option>
+                <option value="um stories">Stories</option>
+                <option value="um carrossel">Carrossel</option>
+            </select>
+        </label>
+        <label>
+            Objeto da carta:
+            <select id="objetoDaCarta">
+                <!-- As opções serão preenchidas dinamicamente pelo JavaScript -->
+            </select>
+        </label>
+        <label>
+            Tema Geral:
+            <input type="text" id="temaGeral">
+        </label>
+        <label>
+            Tema específico:
+            <input type="text" id="temaEspecifico">
+        </label>
+        <label>
+            Diretrizes:
+            <textarea id="diretrizes" rows="9" placeholder="Insira uma diretriz por linha" style="text-align: left;";>Utilize um título e subtítulo que definam o tema;
+                Empregue humor e ironia para tornar o texto mais leve e envolvente;
+                Use linguagem coloquial e expressões comuns para facilitar a compreensão;
+                Faça perguntas retóricas para estimular o pensamento do leitor;
+                Mantenha frases curtas e diretas para facilitar a leitura e a compreensão;
+                Use parênteses para incluir informações adicionais ou explicações;
+                Use repetição de palavras ou ideias para enfatizar um ponto ou criar um efeito humorístico;
+                Apresente exemplos concretos que ilustrem o tema;
+                Explore diferentes aspectos do tema, como consequências, implicações morais e éticas.
+                </textarea>
+        </label>
+        </div>
+        <div class="output-container">
+            <button id="gerarPrompt">Gerar Prompt</button>
+            <div class="output" id="output"></div>
+        </div>
+        </div>
+    <script>
+        const objetosDaCarta = {
+            promocao: [
+                'Opção 1',
+                'Opção 2',
+                // ...
+                'Opção 10'
+            ],
+            entretenimento: [
+                'Opção 1',
+                'Opção 2',
+                // ...
+                'Opção 10'
+            ],
+            debate: [
+                'Opção 1',
+                'Opção 2',
+                // ...
+                'Opção 10'
+            ],
+            aprendizado: [
+                'Opção 1',
+                'Opção 2',
+                // ...
+                'Opção 10'
+            ],
+            ligacao: [
+                'Opção 1',
+                'Opção 2',
+                // ...
+                'Opção 10'
+            ]
+        };
+    
+        const objetivos = {
+            promocao: 'Promover produtos e serviços para',
+            entretenimento: 'Divertir e entreter',
+            debate: 'Iniciar uma discussão com',
+            aprendizado: 'Ensinar algo novo para',
+            ligacao: 'Estabelecer conexões com'
+        };
+    
+        function atualizarObjetivo() {
+            const categoriaPedal = document.getElementById('categoriaPedal').value;
+            document.getElementById('objetivo').value = objetivos[categoriaPedal];
+        }
+    
+        function atualizarObjetoDaCarta() {
+            const categoriaPedal = document.getElementById('categoriaPedal').value;
+            const objetoDaCarta = document.getElementById('objetoDaCarta');
+            objetoDaCarta.innerHTML = '';
+    
+            objetosDaCarta[categoriaPedal].forEach(opcao => {
+                const option = document.createElement('option');
+                option.value = opcao;
+                option.text = opcao;
+                objetoDaCarta.add(option);
+            });
+        }
+    
+        function todosCamposPreenchidos() {
+        const campos = [
+            'tipoDeVoz',
+            'tipoDeLinguagem',
+            'tipoDeTom',
+            'objetivo',
+            'publicoAlvo',
+            'anatomiaDaPublicacao',
+            'objetoDaCarta',
+            'temaEspecifico',
+            'diretrizes',
+            'temaGeral'
+        ];
+
+        return campos.every(campo => {
+            const elemento = document.getElementById(campo);
+            return elemento && elemento.value.trim() !== '';
+        });
+    }
+    
+    function gerarTexto() {
+    if (!todosCamposPreenchidos()) {
+        alert('Por favor, preencha todos os campos do formulário.');
+        return;
+    }
+
+    const tipoDeVoz = document.getElementById('tipoDeVoz').value;
+    const tipoDeLinguagem = document.getElementById('tipoDeLinguagem').value;
+    const tipoDeTom = Array.from(document.getElementById('tipoDeTom').selectedOptions)
+        .map(option => option.value)
+        .join(', ');
+    const objetivo = document.getElementById('objetivo').value;
+    const publicoAlvo = document.getElementById('publicoAlvo').value;
+    const anatomiaDaPublicacao = document.getElementById('anatomiaDaPublicacao').value;
+    const objetoDaCarta = document.getElementById('objetoDaCarta').value;
+    const temaEspecifico = document.getElementById('temaEspecifico').value;
+    const diretrizes = document.getElementById('diretrizes').value.split('\n');
+    const temaGeral = document.getElementById('temaGeral').value;
+    let diretrizesFormatadas = '';
+
+    for (let i = 0; i < diretrizes.length; i++) {
+        if (diretrizes[i].trim() !== '') {
+            diretrizesFormatadas += '- ' + diretrizes[i].trim() + '\n';
+        }
+    }
+
+    const texto = `Eu quero que você atue como um ${tipoDeVoz}, seguindo as orientações do manual técnico que inclui linguagem ${tipoDeLinguagem}, tom ${tipoDeTom} e estratégias específicas de escrita. Eu fornecerei detalhes sobre o tema geral "${temaGeral}", e será seu trabalho criar conteúdo original e criativo para ${objetivo} ${publicoAlvo}. Siga as seguintes diretrizes:\n\n${diretrizesFormatadas}\nMinha primeira solicitação é "preciso de ${anatomiaDaPublicacao} para Instagram com ${objetoDaCarta} sobre o tema específico '${temaEspecifico}', seguindo as diretrizes mencionadas acima para criar um texto envolvente e bem-sucedido.".`;;
+    document.getElementById('output').innerText = texto;
+}
+
+document.getElementById('gerarPrompt').addEventListener('click', gerarTexto);
+document.getElementById('categoriaPedal').addEventListener('change', () => {
+    atualizarObjetivo();
+    atualizarObjetoDaCarta();
+});
+
+// Inicializa os campos Objetivo e Objeto da Carta
+atualizarObjetivo();
+atualizarObjetoDaCarta();
+
+// Inicializa o plugin Select2
+document.addEventListener('DOMContentLoaded', function() {
+    const tipoDeTomSelect = document.getElementById('tipoDeTom');
+    if (tipoDeTomSelect) {
+        $(tipoDeTomSelect).select2();
+    }
+});
+</script>
+</body>
+</html>
