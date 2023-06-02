@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedded iFrame</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .mask-bottom {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 50px; /* Adjust this value to hide the slider */
+            width: 100%;
+            background: white; /* Adjust this to match your page's background color */
+            z-index: 10;
+        }
+        @media only screen and (max-width: 600px) {
+            .mask-bottom {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <iframe title="" allowfullscreen style="border:none;" src="https://www.pacdora.com/share?filter_url=pstnusen3d&title&keywords&background=%23e0e0e0"></iframe>
+    <div class="mask-bottom"></div>
+</body>
+</html>
