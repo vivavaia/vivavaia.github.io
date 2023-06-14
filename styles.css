@@ -1,0 +1,140 @@
+.master-container {
+    display: flex;
+    justify-content: center;
+}
+
+.product-container {
+    display: flex;
+}
+
+.container {
+    flex: 1;
+}
+
+.product-info {
+    flex: 1;
+    max-width: 450px; /* Adjust the maximum width as needed */
+    margin-left: 20px; /* Adjust the left margin as needed */
+    padding: 20px;
+}
+
+.product-header {
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 27px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quantity-selector label {
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 16px;
+    color: #666666;
+    margin-right: 10px;
+}
+
+.quantity-selector input {
+    width: 60px;
+    padding: 5px;
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 16px;
+    color: #666666;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+.guarantee {
+    position: absolute;
+    top: 0;
+    right: -65px;
+    width: 130px;
+    height: 130px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    color: #ffffffe6;
+    background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
+    background-size: 600%;
+    animation: anime 16s linear infinite;
+    border: 1px #ffffff00 solid;
+    border-radius: 100%;
+    margin: 0;
+    transform: translateX(-65px);
+}
+
+.guarantee-inner {
+    display: none;
+    margin-top: -70px;
+    z-index: -1;
+    filter: blur(30px);
+    opacity: 0.8;
+}
+
+.one-yr {
+    font-family: 'Arial Narrow', sans-serif;
+    line-height: 1px;
+    font-size: 15px;
+    width: 200%;
+    letter-spacing: -0.5px;
+    position: absolute;
+    top: 36px;
+    left: -64px;
+    color: #000;
+}
+
+.ten-x {
+    font-family: 'Arial Narrow', sans-serif;
+    line-height: 21px;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    width: 90%;
+    position: absolute;
+    top: 50px;
+    left: 6px;
+    color: #000;
+}
+
+.add-to-cart-button {
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffffe6;
+    background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
+    background-size: 600%;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-position 0.3s ease;
+    border-radius: 0;
+}
+
+.add-to-cart-button:hover {
+    background-position: 100% 50%;
+}
+
+@keyframes anime {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    to {
+        background-position: 0% 50%;
+    }
+}
