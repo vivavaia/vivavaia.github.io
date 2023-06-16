@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Pirate Store</title>
+    <!-- Add the viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Import the component -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script> <!-- Add this line to include the external JavaScript file -->
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__wrapper">
+            <h2 class="site-title"><img class="header-icon" src="noun-pirate-ship-1122660.svg" alt="Icon">OurPirateStore</h2>
+            <ul class="header-nav header-nav__tier-1">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#" class="selected">Product Page</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><button class="join-crew-button">Join the Crew</button></li>
+            </ul>
+            <a class="header-person" href="#">
+                <span class="header-person-icon">
+                    <img class="header-person-icon" src="noun-person-5767339.svg" alt="Person">
+                </span>
+            </a>
+            <a class="header-cart" href="#">
+                <span class="header-cart-icon">
+                    <img class="header-cart-icon" src="noun-basket-1894752.svg" alt="Cart">
+                </span>
+                <span class="site-header__cart-count">0</span>
+            </a>
+        </div>
+    </header>
+    <main class="main-content">
+        <section class="product">
+            <div class="product__grid-left">
+                <div class="sticker">
+                    <div class="guarantee">
+                        <span class="one-yr">PLACEHOLDER TXT</span>
+                        <span class="ten-x">THIS is a placeholder text</span>
+                        <div class="guarantee-inner"></div>
+                    </div>
+                </div>
+                <div class="product-gallery-block">
+                    <div class="product-gallery-viewport">
+                        <model-viewer id="mv-demo" shadow-intensity="1" src="box.glb" alt="A 3D model of a box" auto-rotate camera-controls></model-viewer>
+                    </div>
+                    <div id="scroll-overlay">
+                        <div class="product-gallery-navigation-scroll">
+                            <button class="product-gallery--media-thumbnail" type="button" tabindex="0" aria-label="Gallery Media Thumbnail" data-product-gallery-thumbnail="0" data-product-gallery-selected="true" data-media="22863037661273" data-media-type="model">
+                                <img class="product-gallery--media-thumbnail-" src="noun-3d-4498817.svg" alt="3D Thumbnail">
+                                <img class="icon-model-thumb" src="render-a3.jpg" alt="Render A3">
+                            </button>
+                            <button class="product-gallery--media-thumbnail btn-black" type="button" tabindex="0" aria-label="Second thumbnail" data-product-gallery-thumbnail="1" data-product-gallery-selected="true" data-media="22863037661273" data-media-type="image">
+                                <img class="icon-model-thumb" src="render-a3.jpg" alt="Second Thumbnail">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product__grid-right">
+                <h1>Product Name</h1>
+                <p class="p1">Product description goes here</p>
+                <div class="action-row"> <!-- Wrapper div -->
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart-button">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <p class="p2">All rights not reserved</p>
+        <img class="header-icon" src="noun-pirate-ship-1122660-585858.svg" alt="Icon">
+    </footer>
+</body>
+</html>
